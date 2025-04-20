@@ -38,8 +38,8 @@ def run_epoch(
     loop = tqdm(loader, desc=f"{mode} Epoch", leave=False)
 
     for noisy, clean in loop:
-        noisy = noisy.to(device)
-        clean = clean.to(device)
+        noisy = noisy.unsqueeze(1).to(device)
+        clean = clean.unsqueeze(1).to(device)
 
         with torch.set_grad_enabled(is_train):
             with autocast():

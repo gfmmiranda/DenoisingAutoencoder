@@ -6,17 +6,9 @@ import matplotlib.pyplot as plt
 import IPython.display as ipd
 from torch.cuda.amp import autocast
 
-# Complex STFT-based waveform reconstruction
-def reconstruct_waveform(complex_spec, hop_length=128, win_length=512):
-    real = complex_spec[0]
-    imag = complex_spec[1]
-    D = real + 1j * imag
-    return librosa.istft(D, hop_length=hop_length, win_length=win_length)
 
-# Plot clean + noisy complex spectrogram magnitudes side by side
-def plot_spectrograms(clean_spec, noisy_spec, sr=16000, hop_length=128):
-    clean_mag = np.sqrt(clean_spec[0]**2 + clean_spec[1]**2)
-    noisy_mag = np.sqrt(noisy_spec[0]**2 + noisy_spec[1]**2)
+# Plot clean + noisy spectrograms side by side
+def plot_spectrograms(clean_mag, noisy_mag, sr=16000, hop_length=128):
 
     plt.figure(figsize=(12, 4))
 
@@ -35,7 +27,7 @@ def plot_spectrograms(clean_spec, noisy_spec, sr=16000, hop_length=128):
     plt.tight_layout()
     plt.show()
 
-# Play denoised sample using complex STFT output
+# Helper function to listen to model outputs
 def play_denoised_sample(
         model, 
         dataset, 
@@ -49,18 +41,18 @@ def play_denoised_sample(
     model.eval()
 
     # Load sample
-    noisy, clean = dataset[index]  # [2, F, T]
-    noisy_tensor = noisy.unsqueeze(0).to(device)  # [1, 2, F, T]
+    noisy, clean = dataset[index]  # [F, T]
+    noisy_tensor = noisy.unsqueeze(0).unsqueeze(0).to(device)  # [1, 1, F, T]
 
     # Mixed precision inference
     with torch.no_grad():
         with autocast():
-            denoised = model(noisy_tensor).squeeze(0).cpu().numpy()  # [2, F, T]
+            denoised = model(noisy_tensor).squeeze().cpu().numpy()
 
-    # Reconstruct waveforms
-    noisy_audio = reconstruct_waveform(noisy.numpy(), hop_length, win_length)
-    denoised_audio = reconstruct_waveform(denoised, hop_length, win_length)
-    clean_audio = reconstruct_waveform(clean.numpy(), hop_length, win_length)
+    # Convert to waveform using Griffin-Lim
+    noisy_audio = librosa.griffinlim(noisy.numpy(),  n_iter = 64, n_fft=n_fft, hop_length=hop_length, win_length=win_length)
+    denoised_audio = librosa.griffinlim(denoised, n_iter = 64, n_fft=n_fft, hop_length=hop_length, win_length=win_length)
+    clean_audio = librosa.griffinlim(clean.numpy(), n_iter = 64, n_fft=n_fft, hop_length=hop_length, win_length=win_length)
 
     # Playback
     print("🔊 Noisy")

@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from torchsummary import summary
 
 class UNet(nn.Module):
-    def __init__(self, in_channels=1, out_channels=1, base_filters=16, depth=4, dropout_rate=0.1, activation=nn.ReLU):
+    def __init__(self, in_channels=1, out_channels=1, base_filters=16, depth=3, dropout_rate=0.1, activation=nn.ReLU):
         super(UNet, self).__init__()
         self.depth = depth
         self.pool = nn.MaxPool2d(2)
@@ -40,6 +40,7 @@ class UNet(nn.Module):
             nn.Conv2d(in_c, out_c, kernel_size=3, padding=1),
             nn.BatchNorm2d(out_c),
             self.activation(inplace=True),
+            nn.Dropout(self.dropout_rate),
             nn.Conv2d(out_c, out_c, kernel_size=3, padding=1),
             nn.BatchNorm2d(out_c),
             self.activation(inplace=True),

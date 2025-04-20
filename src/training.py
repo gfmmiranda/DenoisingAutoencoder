@@ -4,7 +4,7 @@ from torch.cuda.amp import autocast, GradScaler
 from tqdm import tqdm
 import numpy as np
 
-from src.torch_dataset import DenoisingSpectrogramDataset
+from src.torch_dataset_SNSD import DenoisingSpectrogramDataset
 from src.utils import play_denoised_sample
 from src.model_conv import ConvDenoisingAutoencoder
 
@@ -91,11 +91,11 @@ def train_model(
 
         # Early stopping check
         if early_stopping_patience is not None and early_stopping_patience > 0:
-            if avg_val_loss + 1e-3 < best_val_loss:
+            if avg_val_loss < best_val_loss:
                 best_val_loss = avg_val_loss
                 epochs_without_improvement = 0
-                # torch.save(model.state_dict(), 'best_model.pth')
-                # print(f"✅ Best model saved (val loss: {best_val_loss:.4f})")
+                torch.save(model.state_dict(), 'best_model.pth')
+                print(f"✅ Best model saved (val loss: {best_val_loss:.4f})")
             else:
                 epochs_without_improvement += 1
                 print(f"⚠️  No improvement for {epochs_without_improvement} epoch(s)")
@@ -105,9 +105,9 @@ def train_model(
                     break
 
         # Optional: audio preview
-        if audio_preview and epoch % 10 == 0:
+        if audio_preview and epoch % 5 == 0:
             print(f"\n🎧 Previewing model output at epoch {epoch}:")
-            play_denoised_sample(model, val_dataset, index=0)
+            play_denoised_sample(model, val_dataset, index=np.random.randint(0, len(val_dataset)))
 
         print(f"📉 Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
         for param_group in optimizer.param_groups:

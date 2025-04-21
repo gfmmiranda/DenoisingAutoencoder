@@ -4,3 +4,5 @@ librosa
 soundfile
 pytorch
 tensorflow
+optuna
+wandb

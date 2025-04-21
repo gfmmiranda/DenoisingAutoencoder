@@ -89,3 +89,38 @@ def play_denoised_sample(
     ipd.display(ipd.Audio(denoised_audio, rate=sample_rate))
     print("🔊 Clean (reference)")
     ipd.display(ipd.Audio(clean_audio, rate=sample_rate))
+
+
+# Function to compute magnitude spectrogram
+def compute_mag_spectrogram(audio_path, SAMPLE_RATE, N_FFT, HOP_LENGTH, WIN_LENGTH):
+
+    signal, sr = librosa.load(audio_path)
+
+    # Resample if necessary
+    if sr != SAMPLE_RATE:
+        signal = librosa.resample(signal, orig_sr = sr, target_sr=SAMPLE_RATE)
+    
+    # Compute Spectrogram
+    D = librosa.stft(signal, n_fft=N_FFT, hop_length=HOP_LENGTH, win_length=WIN_LENGTH)
+    mag = pad_or_crop_spectrogram(np.abs(D))
+
+    return mag
+
+def pad_or_crop_spectrogram(spec, TARGET_BINS, TARGET_FRAMES):
+    freq_bins, time_frames = spec.shape
+
+    # Pad frequency axis if needed
+    if freq_bins < TARGET_BINS:
+        pad_freq = TARGET_BINS - freq_bins
+        spec = np.pad(spec, ((0, pad_freq), (0, 0)), mode='constant')
+    elif freq_bins > TARGET_BINS:
+        spec = spec[:TARGET_BINS, :]
+
+    # Pad/crop time axis
+    if time_frames < TARGET_FRAMES:
+        pad_time = TARGET_FRAMES - time_frames
+        spec = np.pad(spec, ((0, 0), (0, pad_time)), mode='constant')
+    elif time_frames > TARGET_FRAMES:
+        spec = spec[:, :TARGET_FRAMES]
+
+    return spec

@@ -5,18 +5,7 @@ from torch.cuda.amp import autocast, GradScaler
 from tqdm import tqdm
 import numpy as np
 import wandb
-
-from src.torch_dataset_SNSD import DenoisingSpectrogramDataset
 from src.utils import play_denoised_sample
-
-
-def build_dataset(data_folder, split = 'train', target_frames = 1024, batch_size = 16):
-
-    # Dataset and loader
-    dataset = DenoisingSpectrogramDataset(data_folder, split, target_frames)
-    loader = DataLoader(dataset, batch_size, shuffle=True)
-
-    return dataset, loader
 
 
 def run_epoch(
@@ -26,12 +15,12 @@ def run_epoch(
         device, 
         optimizer=None, 
         scaler=None, 
-        is_train=True
+        train=True
         ):
     epoch_loss = 0.0
-    mode = 'Train' if is_train else 'Val'
+    mode = 'Train' if train else 'Val'
 
-    if is_train:
+    if train:
         model.train()
     else:
         model.eval()
@@ -42,12 +31,12 @@ def run_epoch(
         noisy = noisy.unsqueeze(1).to(device)
         clean = clean.unsqueeze(1).to(device)
 
-        with torch.set_grad_enabled(is_train):
+        with torch.set_grad_enabled(train):
             with autocast():
                 output = model(noisy)
                 loss = criterion(output, clean)
 
-            if is_train:
+            if train:
                 optimizer.zero_grad()
                 scaler.scale(loss).backward()
                 scaler.step(optimizer)
@@ -87,8 +76,8 @@ def train_model(
     for epoch in range(num_epochs):
         print(f"\n🔁 Epoch {epoch+1}/{num_epochs}")
 
-        avg_train_loss = run_epoch(model, train_loader, criterion, device, optimizer, scaler, is_train=True)
-        avg_val_loss = run_epoch(model, val_loader, criterion, device, is_train=False)
+        avg_train_loss = run_epoch(model, train_loader, criterion, device, optimizer, scaler, train=True)
+        avg_val_loss = run_epoch(model, val_loader, criterion, device, train=False)
 
         train_losses.append(avg_train_loss)
         val_losses.append(avg_val_loss)
@@ -129,4 +118,4 @@ def train_model(
 
         torch.cuda.empty_cache()
 
-    return model, train_losses, val_losses
+    return model, train_losses, val_losses, best_val_loss

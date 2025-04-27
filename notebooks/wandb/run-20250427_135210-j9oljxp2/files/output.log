@@ -1,0 +1,125 @@
+
+🔁 Epoch 1/100
+                                                              
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0321)
+📉 Train Loss: 0.0836 | Val Loss: 0.0321
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 2/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0290)
+📉 Train Loss: 0.0421 | Val Loss: 0.0290
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 3/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0247)
+📉 Train Loss: 0.0347 | Val Loss: 0.0247
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 4/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0239)
+📉 Train Loss: 0.0312 | Val Loss: 0.0239
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 5/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0285 | Val Loss: 0.0247
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 6/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0217)
+📉 Train Loss: 0.0267 | Val Loss: 0.0217
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 7/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0252 | Val Loss: 0.0236
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 8/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0210)
+📉 Train Loss: 0.0237 | Val Loss: 0.0210
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 9/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0198)
+📉 Train Loss: 0.0227 | Val Loss: 0.0198
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 10/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0194)
+📉 Train Loss: 0.0217 | Val Loss: 0.0194
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 11/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0210 | Val Loss: 0.0230
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 12/100
+⚠️  No improvement for 2 epoch(s)
+📉 Train Loss: 0.0201 | Val Loss: 0.0210
+🔧 Learning Rate: 0.000040
+
+🔁 Epoch 13/100
+⚠️  No improvement for 3 epoch(s)
+📉 Train Loss: 0.0195 | Val Loss: 0.0197
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 14/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0193)
+📉 Train Loss: 0.0188 | Val Loss: 0.0193
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 15/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0187)
+📉 Train Loss: 0.0186 | Val Loss: 0.0187
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 16/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0186)
+📉 Train Loss: 0.0186 | Val Loss: 0.0186
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 17/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0185 | Val Loss: 0.0192
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 18/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0182)
+📉 Train Loss: 0.0185 | Val Loss: 0.0182
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 19/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0184 | Val Loss: 0.0191
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 20/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_0.pth (val loss: 0.0181)
+📉 Train Loss: 0.0183 | Val Loss: 0.0181
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 21/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0182 | Val Loss: 0.0186
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 22/100
+⚠️  No improvement for 2 epoch(s)
+📉 Train Loss: 0.0181 | Val Loss: 0.0191
+🔧 Learning Rate: 0.000004
+
+🔁 Epoch 23/100
+⚠️  No improvement for 3 epoch(s)
+📉 Train Loss: 0.0181 | Val Loss: 0.0190
+🔧 Learning Rate: 0.000000
+
+🔁 Epoch 24/100
+⚠️  No improvement for 4 epoch(s)
+📉 Train Loss: 0.0180 | Val Loss: 0.0186
+🔧 Learning Rate: 0.000000
+
+🔁 Epoch 25/100
+⚠️  No improvement for 5 epoch(s)
+⛔️ Early stopping triggered.

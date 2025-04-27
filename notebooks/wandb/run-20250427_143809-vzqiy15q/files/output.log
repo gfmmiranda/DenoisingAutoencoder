@@ -1,0 +1,153 @@
+
+🔁 Epoch 1/100
+                                                              
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.6919)
+📉 Train Loss: 1.0016 | Val Loss: 0.6919
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 2/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.4802)
+📉 Train Loss: 0.5594 | Val Loss: 0.4802
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 3/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.3735)
+📉 Train Loss: 0.4078 | Val Loss: 0.3735
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 4/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.3439)
+📉 Train Loss: 0.3400 | Val Loss: 0.3439
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 5/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.2599)
+📉 Train Loss: 0.3002 | Val Loss: 0.2599
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 6/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.2275)
+📉 Train Loss: 0.2630 | Val Loss: 0.2275
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 7/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1929)
+📉 Train Loss: 0.2246 | Val Loss: 0.1929
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 8/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1814)
+📉 Train Loss: 0.1973 | Val Loss: 0.1814
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 9/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1558)
+📉 Train Loss: 0.1778 | Val Loss: 0.1558
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 10/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1466)
+📉 Train Loss: 0.1625 | Val Loss: 0.1466
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 11/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1372)
+📉 Train Loss: 0.1496 | Val Loss: 0.1372
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 12/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1257)
+📉 Train Loss: 0.1386 | Val Loss: 0.1257
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 13/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.1289 | Val Loss: 0.1325
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 14/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.1033)
+📉 Train Loss: 0.1203 | Val Loss: 0.1033
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 15/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.1125 | Val Loss: 0.1038
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 16/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0930)
+📉 Train Loss: 0.1057 | Val Loss: 0.0930
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 17/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0995 | Val Loss: 0.0985
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 18/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0809)
+📉 Train Loss: 0.0939 | Val Loss: 0.0809
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 19/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0887 | Val Loss: 0.0847
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 20/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0713)
+📉 Train Loss: 0.0840 | Val Loss: 0.0713
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 21/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0699)
+📉 Train Loss: 0.0797 | Val Loss: 0.0699
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 22/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0675)
+📉 Train Loss: 0.0759 | Val Loss: 0.0675
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 23/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0614)
+📉 Train Loss: 0.0724 | Val Loss: 0.0614
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 24/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0591)
+📉 Train Loss: 0.0694 | Val Loss: 0.0591
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 25/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0561)
+📉 Train Loss: 0.0664 | Val Loss: 0.0561
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 26/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0639 | Val Loss: 0.0563
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 27/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0494)
+📉 Train Loss: 0.0615 | Val Loss: 0.0494
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 28/100
+✅ Best model saved: /home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/checkpoints/model_trial_1.pth (val loss: 0.0468)
+📉 Train Loss: 0.0594 | Val Loss: 0.0468
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 29/100
+⚠️  No improvement for 1 epoch(s)
+📉 Train Loss: 0.0575 | Val Loss: 0.0515
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 30/100
+⚠️  No improvement for 2 epoch(s)
+📉 Train Loss: 0.0558 | Val Loss: 0.0496
+🔧 Learning Rate: 0.000011
+
+🔁 Epoch 31/100

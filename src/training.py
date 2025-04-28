@@ -74,7 +74,7 @@ def train_model(
     model_save_path = None
 
     for epoch in range(num_epochs):
-        print(f"\n🔁 Epoch {epoch+1}/{num_epochs}")
+        print(f"\nEpoch {epoch+1}/{num_epochs}")
 
         avg_train_loss = run_epoch(model, train_loader, criterion, device, optimizer, scaler, train=True)
         avg_val_loss = run_epoch(model, val_loader, criterion, device, train=False)
@@ -90,25 +90,25 @@ def train_model(
 
                 model_save_path = os.path.join(save_dir, f"model_trial_{trial.number if trial else 'default'}.pth")
                 torch.save(model.state_dict(), model_save_path)
-                print(f"✅ Best model saved: {model_save_path} (val loss: {best_val_loss:.4f})")
+                print(f"Best model saved: {model_save_path} (val loss: {best_val_loss:.4f})")
 
                 if trial:
                     trial.set_user_attr("best_model_path", model_save_path)
             else:
                 epochs_without_improvement += 1
-                print(f"⚠️  No improvement for {epochs_without_improvement} epoch(s)")
+                print(f"No improvement for {epochs_without_improvement} epoch(s)")
 
                 if epochs_without_improvement >= early_stopping_patience:
-                    print("⛔️ Early stopping triggered.")
+                    print("Early stopping triggered.")
                     break
 
         if audio_preview and epoch % 10 == 0:
-            print(f"\n🎧 Previewing model output at epoch {epoch}:")
+            print(f"\nPreviewing model output at epoch {epoch}:")
             play_denoised_sample(model, val_dataset, index=0)
 
-        print(f"📉 Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        print(f"Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
         for param_group in optimizer.param_groups:
-            print(f"🔧 Learning Rate: {param_group['lr']:.6f}")
+            print(f"Learning Rate: {param_group['lr']:.6f}")
 
         # Log to wand
         wandb.log({

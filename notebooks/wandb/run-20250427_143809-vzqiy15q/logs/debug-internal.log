@@ -1,8 +1,0 @@
-{"time":"2025-04-27T14:38:09.405344202-03:00","level":"INFO","msg":"using version","core version":"0.18.7"}
-{"time":"2025-04-27T14:38:09.405359148-03:00","level":"INFO","msg":"created symlink","path":"/home/gabriel/VSProjects/audio_analysis/DenoisingAutoencoder/notebooks/wandb/run-20250427_143809-vzqiy15q/logs/debug-core.log"}
-{"time":"2025-04-27T14:38:09.510720723-03:00","level":"INFO","msg":"created new stream","id":"vzqiy15q"}
-{"time":"2025-04-27T14:38:09.51077152-03:00","level":"INFO","msg":"stream: started","id":"vzqiy15q"}
-{"time":"2025-04-27T14:38:09.510852063-03:00","level":"INFO","msg":"writer: Do: started","stream_id":"vzqiy15q"}
-{"time":"2025-04-27T14:38:09.510914977-03:00","level":"INFO","msg":"handler: started","stream_id":"vzqiy15q"}
-{"time":"2025-04-27T14:38:09.51098336-03:00","level":"INFO","msg":"sender: started","stream_id":"vzqiy15q"}
-{"time":"2025-04-27T14:38:09.952506797-03:00","level":"INFO","msg":"Starting system monitor"}

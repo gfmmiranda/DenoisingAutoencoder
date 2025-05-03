@@ -61,7 +61,8 @@ def train_model(
         audio_preview=False,
         early_stopping_patience=None,
         trial=None,
-        save_dir="checkpoints"
+        save_dir="checkpoints",
+        log_to_wandb=False
     ):
 
     train_losses = []
@@ -110,12 +111,13 @@ def train_model(
         for param_group in optimizer.param_groups:
             print(f"Learning Rate: {param_group['lr']:.6f}")
 
-        # Log to wand
-        wandb.log({
-            "train_loss": avg_train_loss,
-            "val_loss": avg_val_loss
-        }, step=epoch)
+        if log_to_wandb:
+            # Log to wand
+            wandb.log({
+                "train_loss": avg_train_loss,
+                "val_loss": avg_val_loss
+            }, step=epoch)
 
-        torch.cuda.empty_cache()
+            torch.cuda.empty_cache()
 
     return model, train_losses, val_losses, best_val_loss

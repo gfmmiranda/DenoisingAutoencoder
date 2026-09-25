@@ -2,7 +2,7 @@ numpy
 pandas
 librosa
 soundfile
-pytorch
+torch
 tensorflow
 optuna
 wandb

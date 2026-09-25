@@ -77,6 +77,10 @@ def train_model(
     for epoch in range(num_epochs):
         print(f"\nEpoch {epoch+1}/{num_epochs}")
 
+        if audio_preview and epoch % 5 == 0:
+            print(f"\nPreviewing model output before epoch {epoch}:")
+            play_denoised_sample(model, val_dataset, index=[0, 25, 87, 97], epoch=str(epoch))
+
         avg_train_loss = run_epoch(model, train_loader, criterion, device, optimizer, scaler, train=True)
         avg_val_loss = run_epoch(model, val_loader, criterion, device, train=False)
 
@@ -102,10 +106,6 @@ def train_model(
                 if epochs_without_improvement >= early_stopping_patience:
                     print("Early stopping triggered.")
                     break
-
-        if audio_preview and epoch % 10 == 0:
-            print(f"\nPreviewing model output at epoch {epoch}:")
-            play_denoised_sample(model, val_dataset, index=0)
 
         print(f"Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
         for param_group in optimizer.param_groups:

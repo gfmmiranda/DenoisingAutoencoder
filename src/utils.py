@@ -4,7 +4,7 @@ import librosa.display
 import numpy as np
 import IPython.display as ipd
 from torch.cuda.amp import autocast
-
+import soundfile as sf
 
 # Plot clean + noisy spectrograms side by side
 def plot_spectrograms(clean_mag, noisy_mag, sr=16000, hop_length=128):
@@ -30,69 +30,77 @@ def plot_spectrograms(clean_mag, noisy_mag, sr=16000, hop_length=128):
 def play_denoised_sample(
     model, 
     dataset, 
-    index=0, 
+    index=[0], 
     n_fft=512, 
     hop_length=128, 
     win_length=512,
     sample_rate=16000,
+    epoch=''
 ):
     device = next(model.parameters()).device
     model.eval()
 
-    # Load sample
-    noisy, clean = dataset[index]  # [F, T]
-    noisy_tensor = noisy.unsqueeze(0).unsqueeze(0).to(device)
+    print(len(dataset), "samples in the dataset.")
 
-    # Inference
-    with torch.no_grad():
-        with autocast():
-            denoised = model(noisy_tensor).squeeze().cpu().numpy()
+    for idx in index:
+        print(f"🎧 Playing sample index: {idx}")
+        # Load sample
+        noisy, clean = dataset[idx]  # [F, T]
+        noisy_tensor = noisy.unsqueeze(0).unsqueeze(0).to(device)
 
-    # Reconstruct waveforms
-    noisy_audio = librosa.griffinlim(noisy.numpy(), n_iter=64, hop_length=hop_length, win_length=win_length)
-    denoised_audio = librosa.griffinlim(denoised, n_iter=64, hop_length=hop_length, win_length=win_length)
-    clean_audio = librosa.griffinlim(clean.numpy(), n_iter=64, hop_length=hop_length, win_length=win_length)
+        # Inference
+        with torch.no_grad():
+            with autocast():
+                denoised = model(noisy_tensor).squeeze().cpu().numpy()
 
-    # Spectrogram to dB
-    def to_db(x):
-        return librosa.amplitude_to_db(np.maximum(x, 1e-5), ref=np.max)
+        # Reconstruct waveforms
+        noisy_audio = librosa.griffinlim(noisy.numpy(), n_iter=64, hop_length=hop_length, win_length=win_length)
+        denoised_audio = librosa.griffinlim(denoised, n_iter=64, hop_length=hop_length, win_length=win_length)
+        clean_audio = librosa.griffinlim(clean.numpy(), n_iter=64, hop_length=hop_length, win_length=win_length)
 
-    noisy_db = to_db(noisy.numpy())
-    denoised_db = to_db(denoised)
-    clean_db = to_db(clean.numpy())
-    diff_db = noisy_db - denoised_db
+        # Spectrogram to dB
+        def to_db(x):
+            return librosa.amplitude_to_db(np.maximum(x, 1e-5), ref=np.max)
 
-    # Plot
-    fig, axs = plt.subplots(1, 4, figsize=(20, 4))
+        noisy_db = to_db(noisy.numpy())
+        denoised_db = to_db(denoised)
+        clean_db = to_db(clean.numpy())
+        diff_db = clean_db - denoised_db
 
-    librosa.display.specshow(noisy_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[0])
-    axs[0].set_title('Noisy')
+        # Plot
+        fig, axs = plt.subplots(1, 4, figsize=(20, 4))
 
-    librosa.display.specshow(denoised_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[1])
-    axs[1].set_title('Denoised')
+        librosa.display.specshow(noisy_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[0])
+        axs[0].set_title('Noisy')
 
-    librosa.display.specshow(clean_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[2])
-    axs[2].set_title('Clean')
+        librosa.display.specshow(denoised_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[1])
+        axs[1].set_title('Denoised')
 
-    librosa.display.specshow(diff_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[3], cmap='coolwarm')
-    axs[3].set_title('Noisy - Denoised (dB)')
+        librosa.display.specshow(clean_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[2])
+        axs[2].set_title('Clean')
 
-    for ax in axs:
-        ax.label_outer()
-    plt.tight_layout()
-    plt.show()
+        librosa.display.specshow(diff_db, sr=sample_rate, hop_length=hop_length, y_axis='linear', x_axis='time', ax=axs[3], cmap='coolwarm')
+        axs[3].set_title('Clean - Denoised (dB)')
 
-    # Playback
-    print("🔊 Noisy")
-    ipd.display(ipd.Audio(noisy_audio, rate=sample_rate))
-    print("🔊 Denoised (model output)")
-    ipd.display(ipd.Audio(denoised_audio, rate=sample_rate))
-    print("🔊 Clean (reference)")
-    ipd.display(ipd.Audio(clean_audio, rate=sample_rate))
+        for ax in axs:
+            ax.label_outer()
+        plt.tight_layout()
+        plt.show()
+        plt.savefig(f"spectrogram_epoch{epoch}_sample{idx}.png", dpi=600)
+
+        # Playback
+        print("🔊 Noisy")
+        ipd.display(ipd.Audio(noisy_audio, rate=sample_rate))
+        print("🔊 Denoised (model output)")
+        ipd.display(ipd.Audio(denoised_audio, rate=sample_rate))
+        print("🔊 Clean (reference)")
+        ipd.display(ipd.Audio(clean_audio, rate=sample_rate))
+
+        sf.write(f"denoised_epoch{epoch}_sample{idx}.wav", denoised_audio, sample_rate)
 
 
 # Function to compute magnitude spectrogram
-def compute_mag_spectrogram(audio_path, SAMPLE_RATE, N_FFT, HOP_LENGTH, WIN_LENGTH):
+def compute_mag_spectrogram(audio_path, SAMPLE_RATE, N_FFT, HOP_LENGTH, WIN_LENGTH, TARGET_BINS=None, TARGET_FRAMES=None):
 
     signal, sr = librosa.load(audio_path)
 
@@ -102,7 +110,10 @@ def compute_mag_spectrogram(audio_path, SAMPLE_RATE, N_FFT, HOP_LENGTH, WIN_LENG
     
     # Compute Spectrogram
     D = librosa.stft(signal, n_fft=N_FFT, hop_length=HOP_LENGTH, win_length=WIN_LENGTH)
-    mag = pad_or_crop_spectrogram(np.abs(D))
+    mag = np.abs(D)
+    
+    if TARGET_BINS  and TARGET_FRAMES :
+        mag = pad_or_crop_spectrogram(mag, TARGET_BINS, TARGET_FRAMES)
 
     return mag
 

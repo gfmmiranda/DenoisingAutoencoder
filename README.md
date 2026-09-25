@@ -70,12 +70,6 @@ Below are examples showcasing the denoising capabilities of the implemented mode
 ### Example 2
 
 ![Noisy Spectrogram](path_to_noisy_spectrogram_image_2)  
-*Noisy Input*
-
-![Denoised Spectrogram](path_to_denoised_spectrogram_image_2)  
-*Denoised Output*
-
-*Note: Replace `path_to_*` with the actual paths to your spectrogram images.*
 
 ## Project Structure
 
